@@ -53,6 +53,7 @@ namespace TodoManager
                     Console.WriteLine("Невалидна опция!");
                     Console.ReadLine();
                 }
+
             }
         }
 
