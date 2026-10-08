@@ -63,6 +63,7 @@ namespace StudentsRegistration
 
             //7
 
+            Console.WriteLine("Въведете дата: ");
             if (DateTime.TryParse(Console.ReadLine(), out DateTime birthDate))
             {
                 Console.WriteLine($"Дата: {birthDate:d}");
