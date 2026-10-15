@@ -6,15 +6,42 @@ using System.Threading.Tasks;
 
 namespace TodoManager
 {
-    internal class Task
+    internal class TaskItem
     {
-        public string Title { get; set; }
+
+        public int Id { get; set; }
+        public string Title {
+            get
+            {
+                return title;
+            }
+
+            set
+            {
+                if (string.IsNullOrEmpty(title))
+                    throw new ArgumentNullException("zaglavioeto e zaduljitelno");
+            }
+        }
         public string Description { get; set; }
+            
         public DateTime Deadline { get; set; }
         public bool IsCompleted { get; set; }
 
-        public Task(string title, string description, DateTime deadline)
+        public TaskItem(int id, string title, string description, DateTime deadline)
         {
+
+            if (id <=0)
+            {
+                throw new ArgumentOutOfRangeException("id trqbva da e polojitelno chislo");
+            }
+
+            if (string.IsNullOrEmpty(title))
+            {
+                throw new ArgumentNullException("zaglavieto e zaduljitelno");
+            }
+
+
+            Id = id;
             Title = title;
             Description = description;
             Deadline = deadline;

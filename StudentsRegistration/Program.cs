@@ -6,6 +6,35 @@ namespace StudentsRegistration
     {
         static void Main(string[] args)
         {
+
+            Console.WriteLine("Начало на програмата");
+
+            try
+            {
+                Console.Write("Въведете число: ");
+                int number = int.Parse(Console.ReadLine());
+
+                Console.WriteLine($"Въведохте: {number}");
+            }
+            
+            catch (FormatException ex)
+            {
+                Console.WriteLine("greshka! trqbva da vuvedete chislo.");
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Край на програмата");
+            }
+
+
+
+
+            //ot minalata sedmica
             //1
             Console.Write("Възраст: ");
 

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+//using System.Threading.Tasks;
 
 namespace TodoManager
 {
     internal class Program
     {
-        static List<Task> tasks = new List<Task>();
-
+        static List<TaskItem> tasks = new List<TaskItem>();
+        private static int nextId = 1;
         static void Main()
         {
             while (true)
@@ -71,17 +71,31 @@ namespace TodoManager
             Console.Write("Краен срок (дд.ММ.гггг): ");
             DateTime deadline;
 
-            while (!DateTime.TryParse(Console.ReadLine(), out deadline))
+            try
             {
-                Console.Write("Невалидна дата! Въведи отново: ");
+                while (!DateTime.TryParse(Console.ReadLine(), out deadline))
+                {
+                    Console.Write("Невалидна дата! Въведи отново: ");
+                }
+
+                TaskItem newTask = new TaskItem(nextId, title, description, deadline);
+
+                tasks.Add(newTask);
+                nextId++;
+
+                Console.WriteLine("\nЗадачата беше добавена успешно!");
+                Console.ReadLine();
             }
 
-            Task newTask = new Task(title, description, deadline);
+                catch (ArgumentOutOfRangeException ex)
+                {
+                     Console.WriteLine(ex.Message);
+                }
 
-            tasks.Add(newTask);
-
-            Console.WriteLine("\nЗадачата беше добавена успешно!");
-            Console.ReadLine();
+                catch (ArgumentNullException ex)
+                {
+                     Console.WriteLine(ex.Message);
+                }
         }
 
         static void ShowTasks()
