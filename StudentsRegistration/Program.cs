@@ -7,7 +7,7 @@ namespace StudentsRegistration
         static void Main(string[] args)
         {
 
-            Console.WriteLine("Начало на програмата");
+            Console.WriteLine("==Данни за ученик==");
 
             try
             {
@@ -71,10 +71,10 @@ namespace StudentsRegistration
             }
 
             //4
-            Console.WriteLine("Въведете парична стойност: ");
+            Console.WriteLine("Въведете такса: ");
             if (decimal.TryParse(Console.ReadLine(), out decimal sumMoney))
             {
-                Console.WriteLine($"Парична стойност:: {sumMoney}");
+                Console.WriteLine($"Такса: {sumMoney}");
             }
 
             //6
