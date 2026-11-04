@@ -102,6 +102,77 @@ namespace StudentsRegistration
                 Console.WriteLine("Невалидна дата.");
             }
 
+            
+
+        {
+            static int nextId = 1;
+
+            
+            {
+                string name;
+                int age;
+
+                // Въвеждане на име
+                while (true)
+                {
+                    Console.Write("Въведете име на ученик: ");
+                    name = Console.ReadLine();
+
+                    try
+                    {
+                        if (string.IsNullOrWhiteSpace(name))
+                            throw new ArgumentException(
+                                "Името не може да бъде празно!");
+
+                        break;
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+
+                // Въвеждане на възраст
+                while (true)
+                {
+                    Console.Write("Въведете възраст: ");
+                    string input = Console.ReadLine();
+
+                    // Проверка за формат
+                    if (!int.TryParse(input, out age))
+                    {
+                        Console.WriteLine(
+                            "Невалиден формат! Въведете цяло число.");
+                        continue;
+                    }
+
+                    try
+                    {
+                        // Проверка чрез класа Student
+                        Student student = new Student(nextId, name, age);
+
+                        nextId++;
+
+                        Console.WriteLine("\nДанни за ученика:");
+                        Console.WriteLine($"Id: {student.Id}");
+                        Console.WriteLine($"Име: {student.Name}");
+                        Console.WriteLine($"Възраст: {student.Age}");
+
+                        break;
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(
+                            $"Грешка: {ex.Message}");
+
+                        Console.WriteLine(
+                            "Моля, въведете стойността отново.");
+                    }
+                }
+            }
         }
+
+
+    }
     }
 }
