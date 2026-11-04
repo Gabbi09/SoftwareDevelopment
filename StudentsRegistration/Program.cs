@@ -9,30 +9,6 @@ namespace StudentsRegistration
 
             Console.WriteLine("==Данни за ученик==");
 
-            try
-            {
-                Console.Write("Въведете число: ");
-                int number = int.Parse(Console.ReadLine());
-
-                Console.WriteLine($"Въведохте: {number}");
-            }
-            
-            catch (FormatException ex)
-            {
-                Console.WriteLine("greshka! trqbva da vuvedete chislo.");
-            }
-
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                Console.WriteLine("Край на програмата");
-            }
-
-
-
 
             //ot minalata sedmica
             //1
@@ -105,12 +81,12 @@ namespace StudentsRegistration
             
 
         {
-            static int nextId = 1;
+             int nextId = 1;
 
             
             {
                 string name;
-                int age;
+                int Age;
 
                 // Въвеждане на име
                 while (true)
