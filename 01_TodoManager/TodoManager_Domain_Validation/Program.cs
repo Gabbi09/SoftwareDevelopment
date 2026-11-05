@@ -2,9 +2,12 @@
 {
     internal class Program
     {
-        static ToDoService service = new ToDoService();
+        //static ToDoService service = new ToDoService();
         static void Main(string[] args)
         {
+            TodoStorage storage = new TodoStorage();
+
+            ToDoService service = new ToDoService(storage);
             while (true)
             {
                 Console.Clear();
@@ -23,10 +26,10 @@
                 {
                     switch (choice)
                     {
-                        case "1": { AddTodo(); break; }
-                        case "2": { ListAllTodos(); break; }
-                        case "3": { CompleteTodo();  break; }
-                        case "4": { DeleteTodo();  break; }
+                        case "1": { AddTodo(service); break; }
+                        case "2": { ListAllTodos(service); break; }
+                        case "3": { CompleteTodo(service);  break; }
+                        case "4": { DeleteTodo(service);  break; }
                         case "x": { Console.WriteLine("Край на програмата"); Console.ReadLine(); return; }
                         default: { Console.WriteLine("Невалиден избор."); break; }
                     }
@@ -48,12 +51,12 @@
             }
         }
 
-        private static void DeleteTodo()
+        private static void DeleteTodo(ToDoService service)
         {
             Console.Clear();
             Console.WriteLine();
             Console.WriteLine("=====  Изтрий задача =======\n");
-            ListAllTodos();
+            ListAllTodos(service);
 
             Console.Write("Избери Id: ");
             int id;
@@ -63,17 +66,17 @@
                 Console.Write("Избери Id: ");
             }
 
-           
+            service.Delete(id);
             Console.WriteLine("Задачата е изтрита.");
 
         }
 
-        private static void CompleteTodo()
+        private static void CompleteTodo(ToDoService service)
         {
             Console.Clear();
             Console.WriteLine();
             Console.WriteLine("=====  Маркирай задача като завършена =======\n");
-            ListAllTodos();
+            ListAllTodos(service);
 
             Console.Write("Избери Id: ");
             int id;
@@ -91,7 +94,7 @@
         }
 
        
-        private static void ListAllTodos()
+        private static void ListAllTodos(ToDoService service)
         {
             Console.Clear();
             Console.WriteLine();
@@ -112,7 +115,7 @@
 
         
 
-        private static void AddTodo()
+        private static void AddTodo(ToDoService service)
         {
             Console.Clear();
             Console.WriteLine();
@@ -128,7 +131,7 @@
             DateTime dueDate;
             while (!DateTime.TryParse(Console.ReadLine(), out dueDate))
             {
-                Console.WriteLine("Невалидна дата.Въведи отово!");
+                Console.WriteLine("Невалидна дата.Въведи отново!");
                 Console.Write("Краен срок: ");
             }
 

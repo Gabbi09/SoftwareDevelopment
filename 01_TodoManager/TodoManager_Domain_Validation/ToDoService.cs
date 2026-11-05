@@ -8,14 +8,21 @@ namespace TodoManager_Domain_Validation
 {
     internal class ToDoService
     {
-        private readonly static List<TodoItem> todos = new List<TodoItem>();
-        private static int nextId = 1;
+        //private readonly static List<TodoItem> todos = new List<TodoItem>();
+        //private static int nextId = 1;
+
+        private readonly TodoStorage storage;
+
+        public ToDoService (TodoStorage storage)
+        {
+            this.storage = storage;
+        }
 
 
         public TodoItem FindById(int id)
         {
             TodoItem targetTodo = null;
-            foreach (TodoItem todoItem in todos)
+            foreach (TodoItem todoItem in storage.Todos)
             {
                 if (todoItem.Id == id)
                 {
@@ -28,13 +35,16 @@ namespace TodoManager_Domain_Validation
         }
 
 
-        public List<TodoItem> GetAll() { return todos; }
+        public IReadOnlyList<TodoItem> GetAll() 
+        { 
+            return storage.Todos; 
+        }
 
         public void Add(string title, string description, DateTime dueDate)
         {
-            TodoItem todoItem = new TodoItem(nextId, title, description, dueDate);
-            todos.Add(todoItem);
-            nextId++;
+            TodoItem todoItem = new TodoItem(storage.NextId, title, description, dueDate);
+            storage.Todos.Add(todoItem);
+            storage.NextId++;
         }
 
         public void Complete(int id)
@@ -54,7 +64,7 @@ namespace TodoManager_Domain_Validation
             if(deleteTask == null)
                 throw new ArgumentException("Няма задача с такова ID. ");
           
-            todos.Remove(deleteTask);
+            storage.Todos.Remove(deleteTask);
         }
 
         

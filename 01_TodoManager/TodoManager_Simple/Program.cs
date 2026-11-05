@@ -1,4 +1,6 @@
-﻿namespace TodoManager_Simple
+﻿using System.ComponentModel.Design;
+
+namespace TodoManager_Simple
 {
     public class TodoItem
     {
@@ -40,16 +42,7 @@
            // Program program = new Program();
             while (true)
             {
-                Console.WriteLine();
-                Console.WriteLine("======= TODO MANAGER ========");
-                Console.WriteLine("1. Добави задача");
-                Console.WriteLine("2. Покажи задачи");
-                Console.WriteLine("3. Маркирай задача като изпълнена");
-                Console.WriteLine("4. Изтрий задача");
-                Console.WriteLine("x. Изход");
-
-                Console.WriteLine();
-                Console.Write("Избор: ");
+                Menu();
                 string choice = Console.ReadLine();
                 try
                 {
@@ -99,6 +92,22 @@
 
         }
         }
+
+        static void Menu()
+        {
+                Console.WriteLine();
+                Console.WriteLine("======= TODO MANAGER ========");
+                Console.WriteLine("1. Добави задача");
+                Console.WriteLine("2. Покажи задачи");
+                Console.WriteLine("3. Маркирай задача като изпълнена");
+                Console.WriteLine("4. Изтрий задача");
+                Console.WriteLine("x. Изход");
+
+                Console.WriteLine();
+                Console.Write("Избор: ");
+        }
+        
+
 
         private static void DeleteTodo()
         {
